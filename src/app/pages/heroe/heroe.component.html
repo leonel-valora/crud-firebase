@@ -1,0 +1,63 @@
+<div class="uk-container uk-container-large animated fadeIn faster">
+    <form class="uk-form-stacked" (ngSubmit)="agregarHeroe(form)"
+    #form="ngForm">
+        <fieldset class="uk-fieldset">
+            <legend class="uk-legend">Agregar Heroe</legend>
+            <div class="uk-margin">
+                <label for="nombre" class="uk-form-label uk-text-emphasis">Nombre</label>
+                <div class="uk-form-controls">
+                    <input type="text" 
+                    class="uk-input uk-form-width-large" 
+                    id="nombre"
+                    name="nombre"
+                    required
+                    minlength="5"
+                    [(ngModel)]="heroe.nombre"
+                    #nombre = "ngModel"
+                    [class.uk-form-danger]="nombre.invalid && nombre.touched">
+                    <p *ngIf="nombre.invalid && nombre.touched" class="uk-text-meta uk-text-danger uk-margin-small">Ingresa un nombre valido</p>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <label for="poder" class="uk-form-label">Poder</label>
+                <div class="uk-form-controls">
+                    <input type="text" 
+                    class="uk-input uk-form-width-large" 
+                    id="poder"
+                    name="poder"
+                    required
+                    minlength="5"
+                    [(ngModel)]="heroe.poder"
+                    #poder="ngModel"
+                    [class.uk-form-danger]="poder.invalid && poder.touched">
+                    <p *ngIf="poder.invalid && poder.touched" class="uk-text-meta uk-text-danger uk-margin-small">Ingresa un poder valido</p>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <label for="esta-vivo" class="uk-form-label">¿Esta Vivo?</label>
+                <div class="uk-form-controls">
+                    <input type="checkbox" 
+                    class="uk-checkbox uk-form-width-large" 
+                    id="esta-vivo"
+                    name="vivo"
+                    [(ngModel)]="heroe.vivo">
+                </div>
+            </div>
+            <button type="submit" class="uk-button uk-button-primary uk-margin animated">Guardar Heroe</button>
+        </fieldset>
+    </form>
+    <div *ngIf="guardado" 
+        class="uk-alert uk-alert-success uk-padding uk-text-center uk-margin animated fadeIn faster" uk-alert>
+        <p><i class="fas fa-check-circle fa-3x"></i></p>
+        <h3 class="uk-text-uppercase uk-margin-small">Registro almacenado</h3>
+        <p class="uk-margin-small">Se registro el heroe exitosamente</p>
+        <button class="uk-button uk-button-link" routerLink="/heroes">Ver Lista de Heroes</button>
+    </div>  
+    <div *ngIf="actualizado" 
+        class="uk-alert uk-alert-success uk-padding uk-text-center uk-margin animated fadeIn faster" uk-alert>
+        <p><i class="fas fa-check-circle fa-3x"></i></p>
+        <h3 class="uk-text-uppercase uk-margin-small">Registro actualizado</h3>
+        <p class="uk-margin-small">Se actualizo el heroe exitosamente</p>
+        <button class="uk-button uk-button-link" routerLink="/heroes">Ver Lista de Heroes</button>
+    </div>  
+</div>

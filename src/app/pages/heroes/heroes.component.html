@@ -1,0 +1,41 @@
+<div class="uk-container uk-container-large uk-position-relative animated fadeIn faster">
+    <h1 class="uk-margin uk-text-center">Listado de Heroes</h1>
+    <div *ngIf="!cargando && heroes.length === 0" 
+        class="uk-alert uk-alert-warning uk-padding uk-text-center uk-margin" uk-alert>
+        <p><i class="fas fa-exclamation fa-3x"></i></p>
+        <h3 class="uk-text-uppercase uk-margin-small">No hay registros</h3>
+    </div>
+    <div *ngIf="cargando" 
+        class="uk-alert uk-alert-primary uk-padding uk-text-center uk-margin" uk-alert>
+        <p><i class="fas fa-circle-notch fa-spin fa-3x"></i></p>
+        <h3 class="uk-text-uppercase uk-margin-small">Cargando</h3>
+        <p class="uk-margin-small">Espere por favor</p>
+    </div>  
+    <div *ngIf="!cargando && heroes.length > 0" class="uk-overflow-auto animated fadeIn faster">
+        <table class="uk-table uk-table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Poder</th>
+                    <th>¿Esta vivo?</th>
+                    <th>Tools</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let heroe of heroes; let i = index">
+                    <td>{{ heroe.nombre }}</td>
+                    <td>{{ heroe.poder }}</td>
+                    <td>{{ heroe.vivo }}</td>
+                    <td>
+                        <button class="uk-button uk-button-secondary uk-button-small uk-margin-small-right" [routerLink]="['/heroe', heroe.id ]">Editar</button>
+                        <button class="uk-button uk-button-danger uk-button-small" (click)="borrarHeroe(heroe, i)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom animated" routerLink="/heroe/nuevo">Agregar Heroe</button>
+</div>
+
+
+
